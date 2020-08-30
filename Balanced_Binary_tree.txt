@@ -1,0 +1,19 @@
+class Solution {
+    boolean balanced = true;
+    
+    public boolean isBalanced(TreeNode root) {
+        if(root == null)return true;
+        
+        help(root);
+        return balanced;
+    }
+    public int help(TreeNode root){
+        if(root == null)return 0;
+        int leftHeight = help(root.left);
+        int rightHeight = help(root.right);
+        if(Math.abs(leftHeight-rightHeight) >1){
+            balanced = false;
+        }
+        return 1+Math.max(leftHeight,rightHeight);
+    }
+}

@@ -1,0 +1,20 @@
+class Solution {
+	public List<List<Integer>> generate(int numRows) {
+		if (numRows==0)
+			return Arrays.asList();
+		if (numRows==1)
+			return Arrays.asList(Arrays.asList(1));
+		if (numRows==2)
+			return Arrays.asList(Arrays.asList(1),Arrays.asList(1,1));
+
+		List<List<Integer>> ans=new ArrayList(Arrays.asList(Arrays.asList(1),Arrays.asList(1,1)));
+		for (int i=2;i<numRows;i++){
+			List<Integer> temp=new ArrayList(Arrays.asList(1));
+			for (int j=0;j<i-1;j++)
+				temp.add(ans.get(ans.size()-1).get(j)+ans.get(ans.size()-1).get(j+1));
+			temp.add(1);
+			ans.add(temp);
+			}
+		return ans;
+	}
+}
